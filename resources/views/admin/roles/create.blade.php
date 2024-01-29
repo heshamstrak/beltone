@@ -41,7 +41,7 @@
                                 <h5>Permissions <span class="text-danger">*</span></h5>
             
                                 @php
-                                    $models = ['roles', 'admins'];
+                                    $models = ['roles', 'admins', 'slides', 'categories', 'blogs', 'careers'];
                                 @endphp
             
                                 <table class="table">

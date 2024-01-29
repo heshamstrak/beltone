@@ -31,20 +31,37 @@ Route::middleware([
             Route::delete('/users/bulk_delete', 'UserController@bulkDelete')->name('users.bulk_delete');
             Route::resource('users', 'UserController');
 
-            //genre routes
-            Route::get('/genres/data', 'GenreController@data')->name('genres.data');
-            Route::delete('/genres/bulk_delete', 'GenreController@bulkDelete')->name('genres.bulk_delete');
-            Route::resource('genres', 'GenreController')->only(['index', 'destroy']);
+            //Slide routes
+            Route::get('/slides/data', 'SlideController@data')->name('slides.data');
+            Route::delete('/slides/bulk_delete', 'SlideController@bulkDelete')->name('slides.bulk_delete');
+            Route::resource('slides', 'SlideController');
 
-            //movie routes
-            Route::get('/movies/data', 'MovieController@data')->name('movies.data');
-            Route::delete('/movies/bulk_delete', 'MovieController@bulkDelete')->name('movies.bulk_delete');
-            Route::resource('movies', 'MovieController')->only(['index', 'show', 'destroy']);
+            //Blog routes
+            Route::get('/blogs/data', 'BlogController@data')->name('blogs.data');
+            Route::delete('/blogs/bulk_delete', 'BlogController@bulkDelete')->name('blogs.bulk_delete');
+            Route::resource('blogs', 'BlogController');
 
-            //actor routes
-            Route::get('/actors/data', 'ActorController@data')->name('actors.data');
-            Route::delete('/actors/bulk_delete', 'ActorController@bulkDelete')->name('actors.bulk_delete');
-            Route::resource('actors', 'ActorController')->only(['index', 'destroy']);
+            //Careers routes
+            Route::get('/careers/data', 'CareerController@data')->name('careers.data');
+            Route::delete('/careers/bulk_delete', 'CareerController@bulkDelete')->name('careers.bulk_delete');
+            Route::resource('careers', 'CareerController');
+
+            //Cateogory routes
+            Route::get('/categories/data', 'CategoryController@data')->name('categories.data');
+            Route::delete('/categories/bulk_delete', 'CategoryController@bulkDelete')->name('categories.bulk_delete');
+            Route::resource('categories', 'CategoryController');
+
+            //Press routes
+            Route::get('/presses/data', 'PressController@data')->name('presses.data');
+            Route::delete('/presses/bulk_delete', 'PressController@bulkDelete')->name('presses.bulk_delete');
+            Route::resource('presses', 'PressController');
+
+            //Contact Us routes
+            Route::get('/contacts/data', 'ContactController@data')->name('contacts.data');
+            Route::delete('/contacts/bulk_delete', 'ContactController@bulkDelete')->name('contacts.bulk_delete');
+            Route::get('/contacts/{contact}', 'ContactController@reply')->name('contacts.reply');
+            Route::post('/contacts/{contact}', 'ContactController@store_reply')->name('contacts.reply.store');
+            Route::resource('contacts', 'ContactController');
 
             //setting routes
             Route::get('/settings/general', 'SettingController@general')->name('settings.general');
