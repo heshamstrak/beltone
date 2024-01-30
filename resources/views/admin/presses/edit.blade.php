@@ -26,7 +26,20 @@
         
                             @include('admin.partials._errors')
         
-                          
+                            <div class="row">
+                                <div class="col-6" style="text-align: center">
+                                    <label>Video</label>
+                                    <input type="radio" name="type" autofocus class="form-control" id="video" {{$press->image != null ? 'checked' : ''}} required>
+                                </div>
+                                <div class="col-6" style="text-align: center">
+                                    <label>Image</label>
+                                    <input type="radio" name="type" autofocus class="form-control" id="image" {{$press->video_url != null ? 'checked' : ''}} required>
+                                </div>
+                            </div>
+                            <br>
+                            <hr>
+                            <br>
+
                             {{--Title--}}
                             <div class="form-group">
                                 <label>Title <span class="text-danger">*</span></label>
@@ -38,20 +51,23 @@
                                 <label>Description <span class="text-danger">*</span></label>
                                 <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description', $press->description) }}</textarea>
                             </div>
-        
-                            {{--URL--}}
-                            <div class="form-group">
-                                <label>Video Url</label>
-                                <input type="text" name="video_url" autofocus class="form-control" value="{{ old('video_url', $press->video_url) }}" required>
+          
+                            <div id="video-div" style="{{$press->image == null ? 'display: none' : ''}}">
+                                {{--URL--}}
+                                <div class="form-group">
+                                    <label>Video Url</label>
+                                    <input type="text" name="video_url" autofocus class="form-control" value="{{ old('video_url') }}">
+                                </div>
                             </div>
-        
-                            {{--image--}}
-                            <div class="form-group">
-                                <label class="text-capitalize">Image</label>
-                                <input type="file" name="image" id="input-file-now" class="dropify" @if(isset($press)) data-default-file="{{$press->image_path}}" data-show-remove="false" @endif data-height="585"/>
+             
+                            <div id="image-div" style="{{$press->image == null ? 'display: none' : ''}}">
+                                {{--Image--}}
+                                <div class="form-group">
+                                    <label class="text-capitalize">Image</label>
+                                    <input type="file" name="image" id="input-file-now" class="dropify" @if(isset($press)) data-default-file="{{$press->image_path}}" data-show-remove="false" @endif  data-height="585"/>
+                                </div>
                             </div>
-
-        
+                            
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Update</button>
                             </div>
@@ -70,10 +86,21 @@
 
 @endsection
 
+
 @push('js')
     <script>
         $(document).ready(function(){
             $('.dropify').dropify();
+        });
+
+
+        $('#video').on('click', function() {
+            $('#image-div').hide()
+            $('#video-div').show()
+        });
+        $('#image').on('click', function() {
+            $('#video-div').hide()
+            $('#image-div').show()
         });
     </script>
 @endpush

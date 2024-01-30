@@ -13,6 +13,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('/admin_assets')}}/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
   rel="stylesheet">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('/admin_assets')}}/css/vendors.css">
   <!-- END VENDOR CSS-->
@@ -27,6 +29,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="{{ asset('admin_assets/plugins/noty/noty.css') }}">
   <script src="{{ asset('admin_assets/plugins/noty/noty.min.js') }}"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
   <!-- END Custom CSS-->
 
   <link rel="stylesheet" href="{{ asset('admin_assets/css/custom.css')}}">

@@ -18,6 +18,9 @@
           @if(auth()->user()->hasPermission('read_slides'))
             <li class=" nav-item"><a href="{{route('admin.slides.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Slides</span></a></li>
           @endif
+          @if(auth()->user()->hasPermission('read_abouts'))
+            <li class=" nav-item"><a href="{{route('admin.abouts.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">About Us</span></a></li>
+          @endif
           @if(auth()->user()->hasPermission('read_blogs'))
             <li class=" nav-item"><a href="{{route('admin.blogs.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Blogs</span></a></li>
           @endif
@@ -29,6 +32,18 @@
           @endif
           @if(auth()->user()->hasPermission('read_careers'))
             <li class=" nav-item"><a href="{{route('admin.careers.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Careers</span></a></li>
+          @endif
+          @if(auth()->user()->hasPermission('read_teams'))
+            <li class=" nav-item"><a href="{{route('admin.teams.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Teams</span></a></li>
+          @endif
+          @if(auth()->user()->hasPermission('read_pages'))
+            <li class=" nav-item"><a href="{{route('admin.pages.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Pages</span></a></li>
+          @endif
+          @if(auth()->user()->hasPermission('read_products'))
+            <li class=" nav-item"><a href="{{route('admin.products.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Products</span></a></li>
+          @endif
+          @if(auth()->user()->hasPermission('read_services'))
+            <li class=" nav-item"><a href="{{route('admin.services.index')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Services</span></a></li>
           @endif
       </ul>
     </div>

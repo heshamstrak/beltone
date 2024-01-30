@@ -1,0 +1,1 @@
+<img style="width: 75px" src="{{$team->image_path}}" alt="{{$team->title}}">

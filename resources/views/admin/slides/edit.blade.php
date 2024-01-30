@@ -33,13 +33,6 @@
                                 <input type="text" name="title" autofocus class="form-control" value="{{ old('title', $slide->title) }}" required>
                             </div>
         
-                            {{--description--}}
-                            <div class="form-group">
-                                <label>Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description', $slide->description) }}</textarea>
-                            </div>
-        
-        
                             {{--Link--}}
                             <div class="form-group">
                                 <label>Link</label>

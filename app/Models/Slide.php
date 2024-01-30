@@ -10,7 +10,7 @@ class Slide extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'image', 'link'];
+    protected $fillable = ['title', 'image', 'link'];
 
     protected $appends = ['image_path'];
 

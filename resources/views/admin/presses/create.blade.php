@@ -29,11 +29,11 @@
                             <div class="row">
                                 <div class="col-6" style="text-align: center">
                                     <label>Video</label>
-                                    <input type="radio" name="type" autofocus class="form-control" id="video" required>
+                                    <input type="radio" name="type" autofocus class="form-control" id="video"required>
                                 </div>
                                 <div class="col-6" style="text-align: center">
                                     <label>Image</label>
-                                    <input type="radio" name="type" autofocus class="form-control" id="image" required>
+                                    <input type="radio" name="type" autofocus class="form-control" id="image"required>
                                 </div>
                             </div>
                             <br>
@@ -48,14 +48,14 @@
                             {{--description--}}
                             <div class="form-group">
                                 <label>Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description') }}</textarea>
+                                <textarea name="editor" id="editor" style="height: 300px"></textarea>
                             </div>
 
                             <div id="video-div" style="display: none">
                                 {{--URL--}}
                                 <div class="form-group">
                                     <label>Video Url</label>
-                                    <input type="text" name="video_url" autofocus class="form-control" value="{{ old('video_url') }}" required>
+                                    <input type="text" name="video_url" autofocus class="form-control" value="{{ old('video_url') }}">
                                 </div>
                             </div>
              
@@ -103,6 +103,21 @@
         $('#image').on('click', function() {
             $('#video-div').hide()
             $('#image-div').show()
+        });
+
+        ClassicEditor.create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{route('admin.presses.upload.image')}}"
+            },
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
         });
     </script>
 @endpush

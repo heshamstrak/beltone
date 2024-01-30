@@ -26,7 +26,6 @@ class SlideRequest extends FormRequest
         $rules = [
             'title'       => 'required',
             'description' => 'required',
-            'link'        => 'sometimes|nullable',
             'image'      => 'required|mimes:jpeg,png,jpg,gif,svg,webp',     
         ];
 

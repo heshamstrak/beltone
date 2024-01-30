@@ -118,4 +118,11 @@ class PressController extends Controller
 
     }// end of delete
 
+    public function upload(Request $request)
+    {
+        $image = $request->file('upload')->store('public/presses/ckeditor/');
+        $url = asset(str_replace('public', 'storage', $image));
+        return response()->json(['url' => $url]);
+    }
+
 }//end of controller
