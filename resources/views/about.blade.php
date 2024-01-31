@@ -30,6 +30,10 @@
             @endforeach
           
         @endforeach
+
+        @foreach($abouts as $about)
+            <h3>{{$about->label_1}}</h3>
+        @endforeach
         </ul>
     </body>
 </html>

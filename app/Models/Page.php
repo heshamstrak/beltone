@@ -13,4 +13,14 @@ class Page extends Model
     public function parent_id() {
         return $this->hasOne(Page::class, 'id', 'parent_id')->first();
     }
+
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function parentUp():BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
 }

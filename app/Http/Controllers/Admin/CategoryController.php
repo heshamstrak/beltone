@@ -49,6 +49,11 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $requestData = $request->validated();
+        if ($request->image) {
+            $request->image->store('public/uploads/categories/');
+            $requestData['image'] = $request->image->hashName();
+        }
+
         Category::create($requestData);
         session()->flash('success', 'Added Successfully');
         return redirect()->route('admin.categories.index');
@@ -64,8 +69,13 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $requestData = $request->validated();
-        $category->update($requestData);
+        if ($request->image) {
+            Storage::disk('local')->delete('public/uploads/categories/' . $category->image);
+            $request->poster->store('public/uploads/categories/');
+            $requestData['image'] = $request->image->hashName();
+        }
 
+        $category->update($requestData);
         session()->flash('success', __('Update Successfully'));
         return redirect()->route('admin.categories.index');
 
@@ -93,8 +103,9 @@ class CategoryController extends Controller
 
     }// end of bulkDelete
 
-    private function delete(Category $categories)
+    private function delete(Category $category)
     {
+        Storage::disk('local')->delete('public/uploads/categories/' . $category->image);
         $category->delete();
 
     }// end of delete

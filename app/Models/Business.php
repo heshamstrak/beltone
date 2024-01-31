@@ -6,22 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class Category extends Model
+class Business extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'image'];
+    protected $fillable = ['title', 'description', 'image', 'category_id'];
     protected $appends = ['image_path'];
+
 
     //attir
     public function getImagePathAttribute()
     {
-        return Storage::url('uploads/categories/' . $this->image);
+        return Storage::url('uploads/businesses/' . $this->image);
         
     }// end of getImagePathAttribute
-
-    public function business():HasMany
-    {
-        return $this->hasMany(Business::class, 'category_id');
-    }
 
 }

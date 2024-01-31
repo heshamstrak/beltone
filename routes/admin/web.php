@@ -77,18 +77,32 @@ Route::middleware([
             Route::resource('presses', 'PressController');
             Route::get('/presses/upload-image', 'PressController@upload')->name('presses.upload.image');
 
+            //Investors routes
+            Route::get('/investors/data', 'InvestorController@data')->name('investors.data');
+            Route::delete('/investors/bulk_delete', 'InvestorController@bulkDelete')->name('investors.bulk_delete');
+            Route::resource('investors', 'InvestorController');
+
             //Pages routes
             Route::get('/pages/data', 'PageController@data')->name('pages.data');
             Route::delete('/pages/bulk_delete', 'PageController@bulkDelete')->name('pages.bulk_delete');
             Route::resource('pages', 'PageController');
 
+            //Businesses routes
+            Route::get('/businesses/data/{category}', 'BusinessController@data')->name('businesses.data');
+            Route::delete('/businesses/bulk_delete', 'BusinessController@bulkDelete')->name('businesses.bulk_delete');
+            Route::get('businesses/{category}/home', 'BusinessController@index')->name('businesses.index');
+            Route::get('businesses/{category}/create', 'BusinessController@create')->name('businesses.create');
+            Route::post('businesses/{category}', 'BusinessController@store')->name('businesses.store');
+            Route::get('businesses/{business}/edit', 'BusinessController@edit')->name('businesses.edit');
+            Route::put('businesses/{business}', 'BusinessController@update')->name('businesses.update');
+            Route::delete('businesses/{business}', 'BusinessController@destroy')->name('businesses.destroy');
 
-            //Contact Us routes
-            Route::get('/contacts/data', 'ContactController@data')->name('contacts.data');
-            Route::delete('/contacts/bulk_delete', 'ContactController@bulkDelete')->name('contacts.bulk_delete');
-            Route::get('/contacts/{contact}', 'ContactController@reply')->name('contacts.reply');
-            Route::post('/contacts/{contact}', 'ContactController@store_reply')->name('contacts.reply.store');
-            Route::resource('contacts', 'ContactController');
+            // //Contact Us routes
+            // Route::get('/contacts/data', 'ContactController@data')->name('contacts.data');
+            // Route::delete('/contacts/bulk_delete', 'ContactController@bulkDelete')->name('contacts.bulk_delete');
+            // Route::get('/contacts/{contact}', 'ContactController@reply')->name('contacts.reply');
+            // Route::post('/contacts/{contact}', 'ContactController@store_reply')->name('contacts.reply.store');
+            // Route::resource('contacts', 'ContactController');
 
             //setting routes
             Route::get('/settings/general', 'SettingController@general')->name('settings.general');

@@ -40,8 +40,8 @@
         
                             {{--Icon--}}
                             <div class="form-group">
-                                <label class="text-capitalize">Icon</label>
-                                <input type="file" name="icon" id="input-file-now" class="dropify" data-show-remove="false"  data-height="300"/>
+                                <label class="text-capitalize">Image</label>
+                                <input type="file" name="image" id="input-file-now" class="dropify" data-show-remove="false"  data-height="300"/>
                             </div>
         
                             <div class="form-group">

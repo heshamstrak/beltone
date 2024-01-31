@@ -4,13 +4,13 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-      <h3 class="content-header-title mb-0">About Us</h3>
+      <h3 class="content-header-title mb-0">businesses</h3>
       <div class="row breadcrumbs-top">
         <div class="breadcrumb-wrapper col-12">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a>
             </li>
-            <li class="breadcrumb-item active">About Us
+            <li class="breadcrumb-item active">businesses
             </li>
           </ol>
         </div>
@@ -25,9 +25,9 @@
             <div class="card">
                 <div style="padding: 20px">
 
-                    <a href="{{ route('admin.abouts.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create</a>
+                    <a href="{{ url('admin/businesses/'.$category->id) }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create</a>
 
-                    <form method="post" action="{{ route('admin.abouts.bulk_delete') }}" style="display: inline-block;">
+                    <form method="post" action="{{ route('admin.businesses.bulk_delete') }}" style="display: inline-block;">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="record_ids" id="record-ids">
@@ -50,7 +50,7 @@
                 <div class="card-content collapse show">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table datatable" id="abouts-table" style="width: 100%;">
+                            <table class="table datatable" id="businesses-table" style="width: 100%;">
                                 <thead>
                                 <tr>
                                     <th>
@@ -62,7 +62,7 @@
                                         </div>
                                     </th>
                                     <th>Title</th>
-                                    <th>Icon</th>
+                                    <th>Image</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -100,17 +100,17 @@
 
         let role;
 
-        let aboutsTable = $('#abouts-table').DataTable({
+        let businessesTable = $('#businesses-table').DataTable({
             dom: "tiplr",
             serverSide: true,
             processing: true,
             ajax: {
-                url: '{{ route('admin.abouts.data') }}',
+                url: '{{ route('admin.businesses.data', $category->id) }}',
             },
             columns: [
                 {data: 'record_select', name: 'record_select', searchable: false, sortable: false, width: '1%'},
-                {data: 'label_1', name: 'label_1!'},
-                {data: 'icon', name: 'icon'},
+                {data: 'title', name: 'title'},
+                {data: 'image', name: 'image'},
                 {data: 'created_at', name: 'created_at', searchable: false},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false, width: '20%'},
             ],
@@ -124,7 +124,7 @@
         });
 
         $('#data-table-search').keyup(function () {
-            aboutsTable.search(this.value).draw();
+            businessesTable.search(this.value).draw();
         })
 
     </script>

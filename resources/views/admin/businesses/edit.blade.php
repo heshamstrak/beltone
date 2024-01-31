@@ -3,12 +3,12 @@
 @section('content')
 
     <div>
-        <h2>Categories</h2>
+        <h2>businesses</h2>
     </div>
 
     <ul class="breadcrumb mt-2">
         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Categories</a></li>
+        {{-- <li class="breadcrumb-item"><a href="{{ route('admin.businesses.index') }}">businesses</a></li> --}}
         <li class="breadcrumb-item">Edit</li>
     </ul>
 
@@ -20,7 +20,7 @@
         
                     <div class="tile shadow">
         
-                        <form method="post" action="{{ route('admin.categories.update', $category->id) }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.businesses.update', $business->id) }}"  enctype="multipart/form-data">
                             @csrf
                             @method('put')
         
@@ -28,22 +28,27 @@
                 
                             {{-- Name --}}
                             <div class="form-group">
-                                <label>Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" autofocus class="form-control" value="{{ old('name', $category->name) }}" required>
+                                <label>Title <span class="text-danger">*</span></label>
+                                <input type="text" name="title" autofocus class="form-control" value="{{ old('title', $business->title) }}" required>
                             </div>
-                                                 
+                            
+
                             {{--description--}}
                             <div class="form-group">
-                                <label>Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description', $category->description) }}</textarea>
+                                <label>Description</label>
+                                <textarea name="description" id="editor" style="height: 300px">{{ old('description', $business->description) }}</textarea>
                             </div>
-        
+
+
+
+
                             {{--image--}}
                             <div class="form-group">
                                 <label class="text-capitalize">Image</label>
-                                <input type="file" name="image" id="input-file-now" class="dropify" @if(isset($category)) data-default-file="{{$category->image_path}}" data-show-remove="false" @endif data-height="585"/>
+                                <input type="file" name="image" id="input-file-now" class="dropify" @if(isset($business)) data-default-file="{{$business->image_path}}" data-show-remove="false" @endif   data-height="585"/>
                             </div>
-                            
+        
+                
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Update</button>
                             </div>
@@ -64,8 +69,19 @@
 
 @push('js')
     <script>
-        $(document).ready(function(){
-            $('.dropify').dropify();
+        ClassicEditor.create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{route('admin.presses.upload.image')}}"
+            },
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
         });
     </script>
 @endpush

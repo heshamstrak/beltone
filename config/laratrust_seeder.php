@@ -27,6 +27,8 @@ return [
             'itemms'        => 'c,r,u,d',
             'services'      => 'c,r,u,d',
             'products'      => 'c,r,u,d',
+            'businesses'    => 'c,r,u,d',
+            'investors'     => 'c,r,u,d',
             'settings'      => 'c,r,u,d',
         ],
         'admin' => [],

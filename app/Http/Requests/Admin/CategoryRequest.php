@@ -23,8 +23,15 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = ['name' => 'required'];
-
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'sometimes|nullable',
+        ];
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            $rules['image'] = 'sometimes|nullable';
+        }//end of if
+ 
         return $rules;
 
     }//end of rules

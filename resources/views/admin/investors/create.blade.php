@@ -3,13 +3,13 @@
 @section('content')
 
     <div>
-        <h2>Categories</h2>
+        <h2>investors</h2>
     </div>
     
 
     <ul class="breadcrumb mt-2">
         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Categories</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.investors.index') }}">investors</a></li>
         <li class="breadcrumb-item">Create</li>
     </ul>
 
@@ -21,7 +21,7 @@
         
                     <div class="tile shadow">
         
-                        <form method="post" action="{{ route('admin.categories.store') }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.investors.store') }}"  enctype="multipart/form-data">
                             @csrf
                             @method('post')
         
@@ -32,18 +32,16 @@
                                 <label>Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" autofocus class="form-control" value="{{ old('name') }}" required>
                             </div>
-                           
-                            {{--description--}}
+
+                            {{-- Parent --}}
                             <div class="form-group">
-                                <label>Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description') }}</textarea>
-                            </div>
-        
-        
-                            {{--image--}}
-                            <div class="form-group">
-                                <label class="text-capitalize">Image</label>
-                                <input type="file" name="image" id="input-file-now" class="dropify" data-show-remove="false" data-height="585"/>
+                                <label>Parent</label>
+                                <select name="parent_id" id="" class="form-control">
+                                    <option value="">.....</option>
+                                    @foreach ($investors as $investor)
+                                        <option value="{{$investor->id}}">{{$investor->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="form-group">

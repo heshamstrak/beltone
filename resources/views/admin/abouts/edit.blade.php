@@ -40,8 +40,8 @@
         
                             {{--icon--}}
                             <div class="form-group">
-                                <label class="text-capitalize">Icon</label>
-                                <input type="file" name="icon" id="input-file-now" class="dropify" @if(isset($about)) data-default-file="{{$about->icon_path}}" data-show-remove="false" @endif data-height="300"/>
+                                <label class="text-capitalize">Image</label>
+                                <input type="file" name="image" id="input-file-now" class="dropify" @if(isset($about)) data-default-file="{{$about->image_path}}" data-show-remove="false" @endif data-height="300"/>
                             </div>
                             
                             <div class="form-group">

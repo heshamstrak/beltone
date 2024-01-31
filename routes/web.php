@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{slug?}/{subslug?}', [App\Http\Controllers\WelcomeController::class, 'index'])->name('/');
 
 Auth::routes();
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AboutRequest extends FormRequest
+class BusinessRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,13 @@ class AboutRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title'       => 'required',
-            'description' => 'required',
-            'image'        => 'required',
+            'title'         => 'required',
+            'description'   => 'required',
+            'image'         => 'required',
+            'category_id'   => 'sometimes|nullable',
         ];
-
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
-            $rules['icon'] = 'sometimes|nullable';
+            $rules['image'] = 'sometimes|nullable';
         }//end of if
  
         return $rules;
